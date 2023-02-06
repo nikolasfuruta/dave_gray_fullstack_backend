@@ -2,19 +2,6 @@ const Note = require('../models/Note');
 const User = require('../models/User');
 const asyncHandler = require('express-async-handler');
 
-//@desc-get all notes
-//@method-GET
-//@route-/notes
-//@acess Private
-const getAllNotes = asyncHandler(async (req,res) => {
-  // Get all notes from MongoDB
-  const notes = await Note.find().lean().exec();
-  if(!notes.length) return res.status(400).json({message:'No notes found'});
-  
-  //get all notes
-  res.json(notes);
-});
-
 //@desc-get all notes with username
 //@method-GET
 //@route-/notes
@@ -100,7 +87,6 @@ const deleteNote = asyncHandler(async (req,res) => {
 });
 
 module.exports = {
-  getAllNotes,
   getAllNotesWithUsername,
   createNewNote,
   updateNote,
